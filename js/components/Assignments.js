@@ -1,15 +1,17 @@
 import AssignmentList from "./AssignmentList.js";
+import AssignmentCreate from "../../AssignmentCreate.js";
 export default {
-    components: { AssignmentList },
+    components: { AssignmentList,AssignmentCreate },
     template: `
      <section class="space-y-6">
         <assignment-list :assignments="filters.inProgress" title="In Progress"> </assignment-list>
         <assignment-list :assignments="filters.completed" title="Completed"> </assignment-list>
-        </section>
+      <AssignmentCreate @add="add"/> 
+     </section>
         `,
     data() {
         return {
-            assginments: [
+            assignments: [
                 {
                     id: 1,
                     name: "Finsh project",
@@ -25,19 +27,30 @@ export default {
                     name: "Turn in homework",
                     complete: false
                 }
-            ]
+            ],
+           
         }
     },
     methods: {
         toggle() {
             this.active = !this.active
+        },
+        add(assignment) {
+            if(assignment.length<1) return
+            this.assignments.push({
+                name: assignment,
+                completed: false,
+                id: this.assignments.length + 1
+            })
+            
+            
         }
     },
     computed: {
         filters() {
             return {
-                inProgress: this.assginments.filter(assignment => !assignment.complete),
-                completed: this.assginments.filter(assignment => assignment.complete)
+                inProgress: this.assignments.filter(assignment => !assignment.complete),
+                completed: this.assignments.filter(assignment => assignment.complete)
             }
         }
     }
