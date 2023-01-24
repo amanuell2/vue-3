@@ -14,18 +14,21 @@ export default {
             assignments: [
                 {
                     id: 1,
-                    name: "Finsh project",
-                    complete: false
+                    name: "Finish project",
+                    complete: false,
+                    tag:'math'
                 },
                 {
                     id: 2,
                     name: "Read chapter 4",
-                    complete: false
+                    complete: false,
+                    tag:'science'
                 },
                 {
                     id: 3,
                     name: "Turn in homework",
-                    complete: false
+                    complete: false,
+                    tag:'biology'
                 }
             ],
            
@@ -42,8 +45,6 @@ export default {
                 completed: false,
                 id: this.assignments.length + 1
             })
-            
-            
         }
     },
     computed: {
